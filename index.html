@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>BertoAI</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+
+        <img src="logo.png" class="logo">
+
+        <div>
+            <h2></h2>
+            <span></span>
+        </div>
+
+    </div>
+
+        <button class="new-chat" onclick="newChat()">+ Yeni Sohbet</button>
+        
+        <input
+            id="searchInput"
+            class="search-box"
+            type="text"
+            placeholder="🔍 Sohbet ara...">
+            
+        <div class="history-title">Sohbetler</div>
+
+        <div id="chatHistory" class="chat-history">
+            <div class="history-item active">Yeni sohbet</div>
+
+        </div>
+    </aside>
+
+    <button id="menuToggle" class="menu-toggle">
+        ☰
+    </button>
+    
+    <main class="main-chat" onclick="closeSidebar()">
+        <div class="topbar">
+            <h1>BertoAI</h1>
+            <p>BertoAI Asistanı Hoşgeldiniz.</p>
+        </div>
+
+        <div id="chatBox" class="chat-box">
+            <div class="bot message">
+                Merhaba gardaşım, ben BertoAI. Ne yapıyoruz bugün?
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input id="messageInput" type="text" placeholder="Mesajını yaz...">
+            <button onclick="sendMessage()">Gönder</button>
+        </div>
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

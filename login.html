@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BertoAI Giriş</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<div class="auth-card">
+    <img src="logo.png" class="auth-logo">
+
+    <h1>Giriş Yap</h1>
+    <p>BertoAI hesabına giriş yap</p>
+
+    <input id="email" type="email" placeholder="E-posta">
+    <input id="password" type="password" placeholder="Şifre">
+
+    <button type="button" onclick="login()">Giriş Yap</button>
+
+    <span id="message"></span>
+
+    <p class="switch">
+        Hesabın yok mu?
+        <a href="register.html">Kayıt ol</a>
+    </p>
+</div>
+
+<script>
+async function login(){
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const messageBox = document.getElementById("message");
+
+    messageBox.textContent = "Giriş deneniyor...";
+
+    try{
+        const res = await fetch("/api/login", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email, password})
+        });
+
+        const data = await res.json();
+
+        if(data.success){
+            window.location.href = "/";
+        }else{
+            messageBox.textContent = data.message || "Giriş başarısız.";
+        }
+    }catch(error){
+        messageBox.textContent = "Sunucudan cevap gelmedi. Terminali kontrol et.";
+    }
+}
+</script>
+</body>
+</html>

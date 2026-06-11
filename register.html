@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BertoAI Kayıt Ol</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<div class="auth-card">
+    <img src="logo.png" class="auth-logo">
+
+    <h1>Kayıt Ol</h1>
+    <p>Yeni BertoAI hesabı oluştur</p>
+
+    <input id="email" type="email" placeholder="E-posta">
+    <input id="password" type="password" placeholder="Şifre">
+
+    <button type="button" onclick="registerUser()">Kayıt Ol</button>
+
+    <span id="message"></span>
+
+    <p class="switch">
+        Hesabın var mı?
+        <a href="login.html">Giriş Yap</a>
+    </p>
+</div>
+
+<script>
+async function registerUser(){
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const messageBox = document.getElementById("message");
+
+    messageBox.textContent = "Kayıt deneniyor...";
+
+    if(!email || !password){
+        messageBox.textContent = "E-posta ve şifre boş olamaz.";
+        return;
+    }
+
+    const res = await fetch("/register", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({email, password})
+    });
+
+    const data = await res.json();
+
+    messageBox.textContent = data.message;
+
+    if(data.success){
+        setTimeout(() => {
+            window.location.href = "/login.html";
+        }, 1000);
+    }
+}
+</script>
+
+</body>
+</html>
