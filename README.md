@@ -1,4 +1,4 @@
-# BertoAI Yapım aşamasındadır.
+# BertoAI "Yapım Aşamasındadır"
 
 BertoAI, Flask altyapısı kullanılarak geliştirilen yapay zekâ destekli bir dijital asistan projesidir. Kullanıcılarla doğal dil üzerinden iletişim kurabilir, soruları yanıtlayabilir ve çeşitli görevlerde yardımcı olabilir.
 
